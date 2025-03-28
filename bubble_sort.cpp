@@ -2,7 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
-#include <algorithm> // For max_element
+#include <algorithm> 
 
 using namespace std;
 
@@ -17,24 +17,21 @@ vector<int> parseInputArray(const string& input) {
     return arr;
 }
 
-// Function to write the array state as HTML bars with scaling
 void writeArrayAsHTML(ofstream& file, const vector<int>& arr) {
-    int maxValue = *max_element(arr.begin(), arr.end()); // Get the maximum value
-    double scaleFactor = 300.0 / maxValue; // Scale values to fit within 300px height
+    int maxValue = *max_element(arr.begin(), arr.end()); 
+    double scaleFactor = 300.0 / maxValue; 
 
     file << "<div class='container'>\n";
     for (int value : arr) {
-        int scaledHeight = static_cast<int>(value * scaleFactor); // Scale each value
+        int scaledHeight = static_cast<int>(value * scaleFactor); 
         file << "<div class='bar' style='height:" << scaledHeight << "px;' title='" << value << "'></div>\n";
     }
     file << "</div>\n<hr>\n";
 }
 
-// Bubble Sort implementation and HTML generation
 void bubbleSortAndGenerateHTML(vector<int>& arr) {
-    ofstream file("visualization.html"); // Output HTML file
+    ofstream file("visualization.html"); 
 
-    // Write HTML header and styling
     file << "<!DOCTYPE html>\n<html>\n<head>\n<title>Bubble Sort Visualization</title>\n"
          << "<style>\n"
          << "  .bar { display: inline-block; background-color: rgb(201, 215, 45); width: 20px; margin: 2px; border-radius: 5px;  border: 2px solid white; }\n"
@@ -53,12 +50,12 @@ void bubbleSortAndGenerateHTML(vector<int>& arr) {
                 swap(arr[j], arr[j + 1]);
             }
 
-            // Write the current array state to the HTML file
+         
             writeArrayAsHTML(file, arr);
         }
     }
 
-    // Write HTML footer
+
     file << "</body>\n</html>";
     file.close();
 }
@@ -68,10 +65,8 @@ int main() {
     cout << "Enter your array (comma-separated): ";
     getline(cin, userInput);
 
-    // Parse input array
     vector<int> arr = parseInputArray(userInput);
 
-    // Generate visualization HTML
     bubbleSortAndGenerateHTML(arr);
 
     cout << "Visualization HTML generated: open 'visualization.html' in your browser." << endl;
