@@ -34,5 +34,3 @@ This project bridges low-level logic with frontend visualization. It accepts a u
 4.  **View Output:**
     Open the generated `visualization.html` file in your browser to see the sorting process.
 
----
-*Created by [Your Name]*
